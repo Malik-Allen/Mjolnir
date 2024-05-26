@@ -21,9 +21,15 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 # Collect source files
 file(GLOB_RECURSE SOURCES "${PROJECT_SOURCE_DIR}/src/*.cpp")
 
-# Create the static library
-add_library(Mjolnir STATIC ${SOURCES})
-# add_executable(Mjolnir ${SOURCES})
+
+if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
+    # This is the main project
+    add_executable(Mjolnir ${SOURCES})
+else()
+    # This is a subproject
+    add_library(Mjolnir STATIC ${SOURCES})
+    target_include_directories(Mjolnir PRIVATE ${PROJECT_SOURCE_DIR}/include)
+endif()
 
 target_include_directories(Mjolnir PUBLIC
                            "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
