@@ -4,6 +4,7 @@
 #define MJOLNIR_MATH_H
 
 #include "../src/Transform.h"
+#include "../src/Ray3D.h"
 #include "../src/Ray2D.h"
 #include "../src/Quaternion.h"
 #include "../src/Matrix4.h"
