@@ -97,6 +97,16 @@ namespace Mjolnir
 				return *this;
 			}
 
+			bool operator==(const Quaternion<T>& q) const
+			{
+				return (i == q.i) && (j == q.j) && (k == q.k) && (r == q.r);
+			}
+
+			bool operator!=(const Quaternion<T>& q) const
+			{
+				return !(*this == q);
+			}
+
 			T operator[](const unsigned int index) const
 			{
 				return *(&i + index);

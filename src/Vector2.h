@@ -62,6 +62,16 @@ namespace Mjolnir
 				return *this;
 			}
 
+			bool operator==(const Vector2<T>& v) const
+			{
+				return (x == v.x) && (y == v.y);
+			}
+
+			bool operator!=(const Vector2<T>& v) const
+			{
+				return !(*this == v);
+			}
+
 			T operator[](const unsigned int index) const
 			{
 				return *(&x + index);

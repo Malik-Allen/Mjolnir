@@ -117,6 +117,16 @@ namespace Mjolnir
 				return *this;
 			}
 
+			bool operator==(const Matrix4<T>& _m) const
+			{
+				return (m == _m.m);
+			}
+
+			bool operator!=(const Matrix4<T>& _m) const
+			{
+				return !(*this == _m);
+			}
+
 			T operator[](const unsigned int index) const
 			{
 				return *(m + index);

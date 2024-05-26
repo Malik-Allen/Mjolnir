@@ -73,6 +73,16 @@ namespace Mjolnir
 				return *this;
 			}
 
+			bool operator==(const Vector4<T>& v) const
+			{
+				return (x == v.x) && (y == v.y) && (z == v.z) && (w == v.w);
+			}
+
+			bool operator!=(const Vector4<T>& v) const
+			{
+				return !(*this == v);
+			}
+
 			T operator[](const unsigned int index) const
 			{
 				return *(&x + index);
