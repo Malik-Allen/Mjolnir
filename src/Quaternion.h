@@ -553,4 +553,7 @@ namespace Mjolnir
 	}
 }
 
+typedef Mjolnir::Math::Quaternion<float> Quatf;
+typedef Mjolnir::Math::Quaternion<double> Quatd;
+
 #endif // MJOLNIR_QUATERNION_H

@@ -5,12 +5,6 @@
 
 #include "MjolnirConstants.h"
 
-#if _DEBUG
-#include <stdexcept>
-#include <iostream>
-#endif // _DEBUG 
-
-
 namespace Mjolnir
 {
 	namespace Math
@@ -351,8 +345,11 @@ namespace Mjolnir
 			TestVector2Type<int>("int");
 		}
 #endif // _DEBUG
-
 	}
 }
+
+typedef Mjolnir::Math::Vector2<int> Vector2i;
+typedef Mjolnir::Math::Vector2<float> Vector2f;
+typedef Mjolnir::Math::Vector2<double> Vector2d;
 
 #endif // MJOLNIR_VECTOR2_H

@@ -420,4 +420,8 @@ namespace Mjolnir
 	}
 }
 
+typedef Mjolnir::Math::Vector3<int> Vector3i;
+typedef Mjolnir::Math::Vector3<float> Vector3f;
+typedef Mjolnir::Math::Vector3<double> Vector3d;
+
 #endif // MJOLNIR_VECTOR3_H

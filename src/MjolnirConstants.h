@@ -7,6 +7,12 @@
 #include <string>
 #include <sstream>
 
+#if _DEBUG
+#include <stdexcept>
+#include <iostream>
+#include <cassert>
+#endif // _DEBUG 
+
 #ifndef NEARLY_ZERO
 #define NEARLY_ZERO 1.0e-7f
 #endif

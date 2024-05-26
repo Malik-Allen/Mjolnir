@@ -341,10 +341,10 @@ namespace Mjolnir
 			TestMatrix3Type<int>();
 		}
 #endif // _DEBUG
-
-		
-
+	}
 }
-}
+
+typedef Mjolnir::Math::Matrix3<float> Matrix3f;
+typedef Mjolnir::Math::Matrix3<double> Matrix3d;
 
 #endif // MJOLNIR_MATRIX3_H

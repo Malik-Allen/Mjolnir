@@ -10,3 +10,4 @@ A reliable C++ math library.
 	- Frustum
 	- etc.
 2. Random Number Generator
+	- Noise Generation 

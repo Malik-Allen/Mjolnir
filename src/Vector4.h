@@ -5,11 +5,6 @@
 
 #include "MjolnirConstants.h"
 
-#if _DEBUG
-#include <stdexcept>
-#include <iostream>
-#endif // _DEBUG 
-
 namespace Mjolnir
 {
 	namespace Math
@@ -402,5 +397,9 @@ namespace Mjolnir
 
 	}
 }
+
+typedef Mjolnir::Math::Vector4<int> Vector4i;
+typedef Mjolnir::Math::Vector4<float> Vector4f;
+typedef Mjolnir::Math::Vector4<double> Vector4d;
 
 #endif // MJOLNIR_VECTOR4_H

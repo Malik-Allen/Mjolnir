@@ -746,4 +746,7 @@ namespace Mjolnir
 	}
 }
 
+typedef Mjolnir::Math::Matrix4<float> Matrix4f;
+typedef Mjolnir::Math::Matrix4<double> Matrix4d;
+
 #endif // MJOLNIR_MATRIX4_H

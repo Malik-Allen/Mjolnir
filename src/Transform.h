@@ -3,7 +3,7 @@
 #ifndef MJOLNIR_TRANSFORM_H
 #define MJOLNIR_TRANSFORM_H
 
-#include "TypeDefs.h"
+#include "Quaternion.h"
 
 namespace Mjolnir
 {
