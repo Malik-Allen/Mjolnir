@@ -203,13 +203,13 @@ namespace Mjolnir
 		template <typename T>
 		T Vector3<T>::Magnitude() const
 		{
-			return static_cast<T>(sqrt(pow(x, 2.0) + pow(y, 2.0) + pow(z, 2.0)));
+			return static_cast<T>(sqrt((x * x) + (y * y) + (z * z)));
 		}
 
 		template <typename T>
 		Vector3<T> Vector3<T>::Normal() const
 		{
-			T a = static_cast<T>(sqrt(pow(x, 2.0) + pow(y, 2.0) + pow(z, 2.0)));
+			T a = static_cast<T>(sqrt((x * x) + (y * y) + (z * z)));
 #ifdef _DEBUG
 			if(fabs(a) < NEARLY_ZERO)
 			{
@@ -222,7 +222,7 @@ namespace Mjolnir
 		template <typename T>
 		void Vector3<T>::Normalize()
 		{
-			T a = static_cast<T>(sqrt(pow(x, 2.0) + pow(y, 2.0) + pow(z, 2.0)));
+			T a = static_cast<T>(sqrt((x * x) + (y * y) + (z * z)));
 #ifdef _DEBUG
 			if(fabs(a) < NEARLY_ZERO)
 			{

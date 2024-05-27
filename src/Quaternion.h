@@ -234,7 +234,7 @@ namespace Mjolnir
 		{
 			// Derived-from: https://en.wikipedia.org/wiki/Quaternion#Algebraic_properties
 			Quaternion conj(-i, -j, -k, r);
-			const T magSqrd = pow(conj.i, 2.0f) + pow(conj.j, 2.0f) + pow(conj.k, 2.0f) + pow(conj.r, 2.0f);
+			const T magSqrd = (conj.i * conj.i) + (conj.j * conj.j) + (conj.k * conj.k) + (conj.r * conj.r);
 #ifdef _DEBUG
 			if(std::fabs(magSqrd) < NEARLY_ZERO)
 			{
@@ -253,7 +253,7 @@ namespace Mjolnir
 		template <typename T>
 		Quaternion<T> Quaternion<T>::Normal() const
 		{
-			const T mag = sqrt(pow(i, 2.0f) + pow(j, 2.0f) + pow(k, 2.0f) + pow(r, 2.0f));
+			const T mag = sqrt((i * i) + (j * j) + (k * k) + (r * r));
 #ifdef _DEBUG
 			if(std::fabs(mag) < NEARLY_ZERO)
 			{
@@ -266,7 +266,7 @@ namespace Mjolnir
 		template <typename T>
 		void Quaternion<T>::Normalize()
 		{
-			const T mag = sqrt(pow(i, 2.0f) + pow(j, 2.0f) + pow(k, 2.0f) + pow(r, 2.0f));
+			const T mag = sqrt((i * i) + (j * j) + (k * k) + (r * r));
 #ifdef _DEBUG
 			if(std::fabs(mag) < NEARLY_ZERO)
 			{
