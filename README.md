@@ -14,3 +14,4 @@ A reliable C++ math library.
 3. Curves
 	- 1D Linear Transformations
 	- Bezier Curve
+	- Hermite Curve

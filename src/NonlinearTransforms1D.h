@@ -148,15 +148,28 @@ namespace Mjolnir
 				return BounceClampTop(BounceClampBottom(x));
 			}
 
-			// Cubic (3rd) Bezier through A,B,C,D where A (start) and D (end) are assumed to be 0 and 1
+			// Cubic (3rd) Bezier curve through A,B,C,D where A (start) and D (end) are assumed to be 0 and 1
 			template<typename T>
 			inline static T NormalizedBezier3(T b, T c, T x)
 			{
-				T s = Flip(x);
+				// Derived-from: https://en.wikipedia.org/wiki/B%C3%A9zier_curve
+				T s = 1.0f - x;
 				T x2 = x * x;
 				T s2 = s * s;
 				T x3 = x2 * x;
 				return (3.0f * b * s2 * x) + (3.0f * c * s * x2) + x3;
+			}
+
+			// Cubic (3rd) Hermite curve through A,B,C,D where A (start) and D (end) are assumed to be 0 and 1
+			inline static T NormalizedHermite3(T b, T c, T x)
+			{
+				// Derived-from: https://en.wikipedia.org/wiki/Cubic_Hermite_spline
+				T x2 = x * x;
+				T x3 = x2 * x;
+
+				T m = b * (x3 - (2.0f * x2) + x);
+				T p = c * (x3 - x2);
+				return m + p;
 			}
 
 		private:
