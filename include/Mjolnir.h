@@ -3,6 +3,7 @@
 #ifndef MJOLNIR_MATH_H
 #define MJOLNIR_MATH_H
 
+#include "../src/NonlinearTransforms1D.h"
 #include "../src/Transform.h"
 #include "../src/Ray3D.h"
 #include "../src/Ray2D.h"

@@ -11,3 +11,6 @@ A reliable C++ math library.
 	- etc.
 2. Random Number Generator
 	- Noise Generation 
+3. Curves
+	- 1D Linear Transformations
+	- Bezier Curve
