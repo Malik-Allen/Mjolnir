@@ -14,23 +14,56 @@ namespace Mjolnir
 			virtual ~Transform() = default;
 
 			Transform():
-				m_translation(Vector3f(0.0f)),
-				m_orientation(Quatf::Identity),
-				m_scale(Vector3f(1.0f)),
-				m_modelMatrix(Matrix4f::Identity)
+				translation(Vector3f(0.0f)),
+				orientation(Quatf::Identity),
+				scale(Vector3f(1.0f)),
+				modelMatrix(Matrix4f::Identity)
 			{}
 
-			Transform(const Vector3f& position, const Quatf& rotation, const Vector3f& scale):
-				m_translation(position),
-				m_orientation(rotation),
-				m_scale(scale),
-				m_modelMatrix(Matrix4f::Identity)
+			Transform(const Vector3f& position, const Quatf& rotation, const Vector3f& _scale):
+				translation(position),
+				orientation(rotation),
+				scale(_scale),
+				modelMatrix(Matrix4f::Identity)
 			{}
 
-			Transform(const Transform& transform) = default;
-			Transform(Transform&& transform) = default;
-			Transform& operator=(const Transform& transform) = default;
-			Transform& operator=(Transform&& transform) = default;
+			Transform(const Transform& transform)
+			{
+				translation = transform.translation;
+				orientation = transform.orientation;
+				scale = transform.scale;
+				modelMatrix = transform.modelMatrix;
+			}
+
+			Transform(Transform&& transform) noexcept
+			{
+				translation = transform.translation;
+				orientation = transform.orientation;
+				scale = transform.scale;
+				modelMatrix = transform.modelMatrix;
+
+				transform = Transform();
+			}
+			
+			Transform& operator=(const Transform& transform) 
+			{
+				translation = transform.translation;
+				orientation = transform.orientation;
+				scale = transform.scale;
+				modelMatrix = transform.modelMatrix;
+				return *this;
+			}
+
+			Transform& operator=(Transform&& transform) noexcept
+			{
+				translation = transform.translation;
+				orientation = transform.orientation;
+				scale = transform.scale;
+				modelMatrix = transform.modelMatrix;
+
+				transform = Transform();
+				return *this;
+			}
 
 			void SetPosition(const Vector3f& position);
 			void SetRotation(const Vector3f& axis, const float angle);
@@ -44,10 +77,10 @@ namespace Mjolnir
 			std::string ToString() const;
 
 		protected:
-			Vector3f m_translation;
-			Quatf m_orientation;
-			Vector3f m_scale;
-			Matrix4f m_modelMatrix;
+			Vector3f translation;
+			Quatf orientation;
+			Vector3f scale;
+			Matrix4f modelMatrix;
 
 		private:
 			void Update();

@@ -8,47 +8,47 @@ namespace Mjolnir
 	{
 		void Transform::SetPosition(const Vector3f& position)
 		{
-			m_translation = position;
+			translation = position;
 			Update();
 		}
 
 		void Transform::SetRotation(const Vector3f & axis, const float angle)
 		{
-			m_orientation.RotateAxis(axis, angle);
+			orientation.RotateAxis(axis, angle);
 			Update();
 		}
 
 		void Transform::SetRotation(const Quatf& rotation)
 		{
-			m_orientation = rotation;
+			orientation = rotation;
 			Update();
 		}
 
-		void Transform::SetScale(const Vector3f & scale)
+		void Transform::SetScale(const Vector3f & _scale)
 		{
-			m_scale = scale;
+			scale = _scale;
 			Update();
 		}
 
 		Vector3f Transform::GetPosition() const
 		{
-			return m_translation;
+			return translation;
 		}
 
 		Vector3f Transform::GetScale() const
 		{
-			return m_scale;
+			return scale;
 		}
 
 		Quatf Transform::GetRotation() const
 		{
-			return m_orientation;
+			return orientation;
 		}
 
 		std::string Transform::ToString() const
 		{
 			std::ostringstream oss;
-			oss << "[p:" << m_translation.ToString() << ", r:" << m_orientation.ToString() << ", s:" << m_scale.ToString() << "]" << "\n" << m_modelMatrix.ToString();
+			oss << "[p:" << translation.ToString() << ", r:" << orientation.ToString() << ", s:" << scale.ToString() << "]" << "\n" << modelMatrix.ToString();
 			return oss.str();
 		}
 
@@ -56,7 +56,7 @@ namespace Mjolnir
 		{
 			// In order to obtain a uniform model matrix, we multiply our matrices in this order: Scale -> Rotate -> Translate
 			// In matrix multiplication the order is read from right to left L <-- R
-			m_modelMatrix = Matrix4f::Translate(m_translation) * m_orientation.RotationMatrix4() * Matrix4f::Scale(m_scale);
+			modelMatrix = Matrix4f::Translate(translation) * orientation.RotationMatrix4() * Matrix4f::Scale(scale);
 		}
 
 #if _DEBUG
