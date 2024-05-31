@@ -80,7 +80,16 @@ namespace Mjolnir
 				oss << "(Origin:" << origin.ToString() << ", Direction:" << direction.ToString() << ")";
 				return oss.str();
 			}
+			
+			static Vector2<T> ClosestPoint(const Vector2<T>& point, const Ray2D<T>& ray);
 		};
+
+		template<typename T>
+		Vector2<T> Ray2D<T>::ClosestPoint(const Vector2<T>& point, const Ray2D<T>& ray)
+		{
+			Vector2<T> ToPoint = point - ray.origin;
+			return Vector2<T>::ProjectVectorOnToVector(ToPoint, ray.direction);
+		}
 
 		
 #if _DEBUG
@@ -141,7 +150,28 @@ namespace Mjolnir
 			std::string str = ray4.ToString();
 			std::string expectedStr = "(Origin:(1, 2), Direction:(0.6, 0.8))"; // Assuming direction is normalized to (0.6, 0.8)
 			assert(str == expectedStr);
-			std::cout << "ToString method test passed\n\n";
+			std::cout << "ToString method test passed\n";
+
+			// Define a Ray3D with a known origin and direction
+			origin = Vector2<float>(1.0f, 2.0f);
+			direction = Vector2<float>(4.0f, 5.0f);
+			Ray2D<float> ray(origin, direction);
+
+			// Define a point to test against
+			point = Vector2<float>(7.0f, 8.0f);
+
+			// Calculate the closest point on the ray to the given point
+			Vector2<float> closestPoint = Ray2D<float>::ClosestPoint(point, ray);
+
+			// Calculate the expected closest point manually or using known correct logic
+			Vector2<float> ToPoint = point - origin;
+			Vector2<float> expectedClosestPoint = Vector2<float>::ProjectVectorOnToVector(ToPoint, direction.Normal());
+
+			// Check if the calculated closest point matches the expected closest point
+			assert(closestPoint == expectedClosestPoint);
+
+			// Print the results
+			std::cout << "ClosestPoint function test passed\n\n";
 		}
 #endif
 	}
