@@ -17,7 +17,7 @@ namespace Mjolnir
 
 			virtual ~Circle() = default;
 			
-			explicit Circle(T _radius):
+			explicit Circle(T _radius = 1):
 				center(Vector2<T>::ZeroVector),
 				radius(_radius)
 			{}
@@ -48,7 +48,7 @@ namespace Mjolnir
 				return *this;
 			}
 
-			Circle& operator=(Circle& circle) noexcept
+			Circle& operator=(Circle&& circle) noexcept
 			{
 				center = circle.center;
 				radius = circle.radius;
@@ -87,7 +87,7 @@ namespace Mjolnir
 		template<typename T>
 		inline Vector2<T> Circle<T>::ClosestPoint(const Vector2<T>& point, const Circle<T>& circle, const ProjectionMode& projectionMode)
 		{
-			Vector2<T> centerToPoint = circle.center - point;
+			Vector2<T> centerToPoint = point - circle.center;
 
 			const T radius = circle.radius;
 			const T distanceSquared = centerToPoint.MagnitudeSquared();
@@ -109,6 +109,76 @@ namespace Mjolnir
 			
 			return circle.center + (centerToPoint.Normal() * radius);
 		}
+
+#if _DEBUG
+		void TestCircle() {
+			std::cout << "\nPerforming Circle Unit Tests\n";
+
+			// Default Constructor
+			Circle<float> circle1(5.0f);
+			assert(circle1.center == Vector2<float>::ZeroVector);
+			assert(circle1.radius == 5.0f);
+			std::cout << "Default constructor test passed\n";
+
+			// Parameterized Constructor
+			Vector2<float> center(1.0f, 2.0f);
+			Circle<float> circle2(center, 10.0f);
+			assert(circle2.center == center);
+			assert(circle2.radius == 10.0f);
+			std::cout << "Parameterized constructor test passed\n";
+
+			// Copy Constructor
+			Circle<float> circle3(circle2);
+			assert(circle3.center == circle2.center);
+			assert(circle3.radius == circle2.radius);
+			std::cout << "Copy constructor test passed\n";
+
+			// Move Constructor
+			Circle<float> circle4(std::move(circle2));
+			assert(circle4.center == center);
+			assert(circle4.radius == 10.0f);
+			assert(circle2.center == Vector2<float>());  // Ensure moved-from object is reset
+			assert(circle2.radius == 0.0f);
+			std::cout << "Move constructor test passed\n";
+
+			// Copy Assignment Operator
+			Circle<float> circle5;
+			circle5 = circle3;
+			assert(circle5.center == circle3.center);
+			assert(circle5.radius == circle3.radius);
+			std::cout << "Copy assignment operator test passed\n";
+
+			// Move Assignment Operator
+			Circle<float> circle6;
+			circle6 = std::move(circle3);
+			assert(circle6.center == center);
+			assert(circle6.radius == 10.0f);
+			assert(circle3.center == Vector2<float>());  // Ensure moved-from object is reset
+			assert(circle3.radius == 0.0f);
+			std::cout << "Move assignment operator test passed\n";
+
+			// Comparison Operators
+			Circle<float> circle7(center, 10.0f);
+			assert(circle7 == circle6);
+			assert(!(circle7 != circle6));
+			Circle<float> circle8(Vector2<float>(7.0f, 8.0f), 15.0f);
+			assert(circle8 != circle7);
+			std::cout << "Comparison operators test passed\n";
+
+			// ToString Method
+			std::string str = circle6.ToString();
+			std::string expectedStr = "(Center:(1, 2), Radius:10)";
+			assert(str == expectedStr);
+			std::cout << "ToString method test passed\n";
+
+			// ClosestPoint Method
+			Vector2<float> point(12.0f, 2.0f);
+			Vector2<float> closestPoint = Circle<float>::ClosestPoint(point, circle6, Circle<float>::ProjectionMode::ProjectOntoSurface);
+			Vector2<float> expectedClosestPoint(11.0f, 2.0f);  // Calculate manually based on the circle properties
+			assert(closestPoint == expectedClosestPoint);
+			std::cout << "ClosestPoint method test passed\n";
+		}
+#endif // _DEBUG
 	}
 }
 

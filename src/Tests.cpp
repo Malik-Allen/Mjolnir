@@ -16,6 +16,8 @@ void RunTests()
     Math::TestTransform();
     Math::TestRay2D();
     Math::TestRay3D();
+    Math::TestCircle();
+    Math::TestSphere();
 #endif    
 }
 
