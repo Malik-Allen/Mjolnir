@@ -179,6 +179,7 @@ namespace Mjolnir
 			}
 
 			T Magnitude() const;
+			T MagnitudeSquared() const;
 			Vector3<T> Normal() const;
 			void Normalize();
 			std::string ToString() const;
@@ -204,6 +205,12 @@ namespace Mjolnir
 		T Vector3<T>::Magnitude() const
 		{
 			return static_cast<T>(sqrt((x * x) + (y * y) + (z * z)));
+		}
+
+		template <typename T>
+		T Vector3<T>::MagnitudeSquared() const
+		{
+			return (x * x) + (y * y) + (z * z);
 		}
 
 		template <typename T>
