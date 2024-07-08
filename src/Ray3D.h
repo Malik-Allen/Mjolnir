@@ -92,7 +92,7 @@ namespace Mjolnir
 		}
 
 #if _DEBUG
-		void TestRay3D()
+		inline void TestRay3D()
 		{
 			std::cout << "Testing Ray3D\n";
 			// Default Constructor

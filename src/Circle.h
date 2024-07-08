@@ -111,7 +111,7 @@ namespace Mjolnir
 		}
 
 #if _DEBUG
-		void TestCircle() {
+		inline void TestCircle() {
 			std::cout << "\nPerforming Circle Unit Tests\n";
 
 			// Default Constructor

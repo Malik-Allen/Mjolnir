@@ -111,7 +111,7 @@ namespace Mjolnir
 		}
 
 #if _DEBUG
-		void TestSphere() {
+		inline void TestSphere() {
 			std::cout << "\nPerforming Sphere Unit Tests\n";
 			// Default Constructor
 			Sphere<float> sphere1(5.0f);
