@@ -42,7 +42,7 @@ namespace Mjolnir
 				scale = transform.scale;
 				modelMatrix = transform.modelMatrix;
 
-				transform = Transform();
+				transform.Reset();
 			}
 			
 			Transform& operator=(const Transform& transform) 
@@ -61,18 +61,19 @@ namespace Mjolnir
 				scale = transform.scale;
 				modelMatrix = transform.modelMatrix;
 
-				transform = Transform();
+				transform.Reset();
 				return *this;
 			}
 
 			void SetPosition(const Vector3f& position);
-			void SetRotation(const Vector3f& axis, const float angle);
+			void Rotate(const Vector3f& axis, const float angle);
 			void SetRotation(const Quatf& rotation);
 			void SetScale(const Vector3f& scale);
 
 			Vector3f GetPosition() const;
 			Vector3f GetScale() const;
 			Quatf GetRotation() const;
+			Matrix4f GetModelMatrix() const;
 
 			std::string ToString() const;
 
@@ -84,6 +85,7 @@ namespace Mjolnir
 
 		private:
 			void Update();
+			void Reset();
 		};
 
 #if _DEBUG
@@ -91,5 +93,7 @@ namespace Mjolnir
 #endif // _DEBUG
 	}
 }
+
+typedef Mjolnir::Math::Transform Transform;
 
 #endif // MJOLNIR_TRANSFORM_H

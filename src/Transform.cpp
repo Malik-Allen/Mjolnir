@@ -12,7 +12,7 @@ namespace Mjolnir
 			Update();
 		}
 
-		void Transform::SetRotation(const Vector3f & axis, const float angle)
+		void Transform::Rotate(const Vector3f & axis, const float angle)
 		{
 			orientation.RotateAxis(axis, angle);
 			Update();
@@ -45,6 +45,11 @@ namespace Mjolnir
 			return orientation;
 		}
 
+		Matrix4f Transform::GetModelMatrix() const
+		{
+			return modelMatrix;
+		}
+
 		std::string Transform::ToString() const
 		{
 			std::ostringstream oss;
@@ -59,6 +64,14 @@ namespace Mjolnir
 			modelMatrix = Matrix4f::Translate(translation) * orientation.RotationMatrix4() * Matrix4f::Scale(scale);
 		}
 
+		void Transform::Reset()
+		{
+			translation = Vector3f(0.0f);
+			orientation = Quatf(0.0f);
+			scale = Vector3f(1.0f);
+			modelMatrix = Matrix4f::Identity;
+		}
+
 #if _DEBUG
 		void TestTransform()
 		{
@@ -71,7 +84,7 @@ namespace Mjolnir
 			transform.SetScale(Vector3f(1.0f, 20.0f, 1001.0f));
 			std::cout <<  "set scale:" << transform.ToString() << "\n";
 
-			transform.SetRotation(Vector3f(0.0f, 1.0f, 0.0f), 45.0f);
+			transform.Rotate(Vector3f(0.0f, 1.0f, 0.0f), 45.0f);
 			std::cout <<  "set rotation:" << transform.ToString() << "\n";
 
 			Quatf orientation(transform.GetRotation());
