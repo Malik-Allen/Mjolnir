@@ -1,21 +1,27 @@
 # Mjolnir
-A reliable C++ math library.
+A reliable and performant math library.
 
-## Next Features:
-1. Geometry
-	- Lines
-	- Ray (done)
-	- Plane
-	- Sphere (done)
-	- AAB
+## Goals
+- To explore and review math concepts traditionally used in game and simulation development. 
+- Develop a high-performance math library, that can be used in renderers, games and simulation engines.
+
+## Practical Outcomes
+These are the outcomes that I want from this library:
+- Vector Math
+- Matrix Math
+- Quaternion Math
+- Linear Representations (Curves)
+- Geometry
+	- Ray
+	- Planes
+	- Sphere
 	- Frustum
 	- etc.
-2. Random Number Generator
-	- Noise Generation 
-3. Curves
-	- 1D Linear Transformations (done)
-	- Bezier Curve
-	- Hermite Curve
-4. Geometric Tests
-	- Closest Points (in progress)
-	- Intersections (in progress)
+- Geomteric Testsing
+	- Closest Point
+	- Intersections
+- Random Number Generator
+	- Noise Generation
+	- Seeding
+	- etc.
+- A go to resource for math
