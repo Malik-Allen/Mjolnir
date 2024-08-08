@@ -3,18 +3,13 @@
 #ifndef MJOLNIR_MATH_H
 #define MJOLNIR_MATH_H
 
-#include "../src/NonlinearTransforms1D.h"
+#include "../src/Transform.h"
 #include "../src/Sphere.h"
 #include "../src/Circle.h"
-#include "../src/Transform.h"
 #include "../src/Ray3D.h"
 #include "../src/Ray2D.h"
-#include "../src/Quaternion.h"
-#include "../src/Matrix4.h"
-#include "../src/Matrix3.h"
-#include "../src/Vector4.h"
-#include "../src/Vector3.h"
-#include "../src/Vector2.h"
+#include "../src/NonlinearTransforms1D.h"
+#include "../src/Color.h"
 
 #endif //MJOLNIR_MATH_H
 
