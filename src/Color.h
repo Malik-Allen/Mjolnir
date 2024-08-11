@@ -7,7 +7,7 @@ namespace Mjolnir
 {
 	namespace Math
 	{
-		struct Color
+		struct alignas(4) Color
 		{ 
 			unsigned int r : 8;
 			unsigned int g : 8;
