@@ -34,7 +34,7 @@ namespace Mjolnir
 				b(other.b),
 				a(other.a)
 			{
-				other.r = other.g = other.b = other.a = 0;
+				other.r = other.g = other.b = other.a = 255;
 			}
 
 			~Color() = default;
@@ -56,7 +56,7 @@ namespace Mjolnir
 					g = other.g;
 					b = other.b;
 					a = other.a;
-					other.r = other.g = other.b = other.a = 0;
+					other.r = other.g = other.b = other.a = 255;
 				}
 				return *this;
 			}
