@@ -390,18 +390,17 @@ namespace Mjolnir
 		{
 			// Derived-from: https://en.wikipedia.org/wiki/Orthographic_projection
 
-			Matrix4 m1 = Matrix4::Scale(Vector3<T>(
-				static_cast<T>(2) / (right - left),
-				static_cast<T>(2) / (top - bottom),
-				static_cast<T>(-2) / (zFar - zNear)));
-
-			Matrix4 m2 = Matrix4::Translate(Vector3<T>(
+			Matrix4 result(
+				static_cast<T>(2) / (right - left), 0, 0, 0,
+				0, static_cast<T>(2) / (top - bottom), 0, 0,
+				0, 0, static_cast<T>(1) / (zNear - zFar), 0,
 				-(right + left) / (right - left),
 				-(top + bottom) / (top - bottom),
-				-(zFar + zNear) / (zFar - zNear)));
+				zNear / (zNear - zFar),
+				static_cast<T>(1)
+			);
 
-			Matrix4 orthographicMatrix = m2 * m1;
-			return orthographicMatrix;
+			return result;
 		}
 
 		template <typename T>
