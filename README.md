@@ -1,5 +1,4 @@
 # Mjolnir
-A reliable and performant math library.
 
 ## Goals
 - To explore and review math concepts traditionally used in game and simulation development. 
